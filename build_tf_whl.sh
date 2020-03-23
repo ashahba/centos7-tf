@@ -33,7 +33,7 @@ yes "" | python${PY_VER} configure.py
 python${PY_VER} ${SET_BUILD_ENV_SCRIPT} -p ${TARGET_PLATFORM} -f /root/.mkl.bazelrc \
   ${CONFIG_VER} --secure-build
 
-cat <<EOF > /root/.bazelrc
+cat << EOF > /root/.bazelrc
 import /root/.mkl.bazelrc
 EOF
 
@@ -44,7 +44,7 @@ echo "--------------------------------------------------------"
 
 # Build TF
 bazel --bazelrc=/root/.bazelrc build -c opt \
-  tensorflow/tools/pip_package:build_pip_package    
+  //tensorflow/tools/pip_package:build_pip_package
 
 # Building whl at ${TF_WHLS_DIR}
 bazel-bin/tensorflow/tools/pip_package/build_pip_package "${TF_WHLS_DIR}"
