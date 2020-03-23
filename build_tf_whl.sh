@@ -3,7 +3,7 @@
 set -e
 
 # This script will build the whls inside a CentOS 7 container
-# If you expect the wheel to be save localy use docker mounted volumes
+# If you expect the wheel to be saved localy use docker volumes
 
 # Check our environment
 TF_SRC=${TF_SRC:-"/tensorflow_src"}
