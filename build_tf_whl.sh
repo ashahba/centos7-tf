@@ -21,10 +21,6 @@ else
   CONFIG_VER=""
 fi
 
-# Switch to the specified Dev-Toolset environment to pick up a modern version of gcc
-DEV_TOOLSET_BIN="/opt/rh/devtoolset-${DEV_TOOLSET_VER}/root/usr/bin"
-export PATH=${DEV_TOOLSET_BIN}:$PATH
-
 # Use given Python version to configure
 cd ${TF_SRC}
 yes "" | python${PY_VER} configure.py

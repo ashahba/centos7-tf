@@ -9,6 +9,9 @@ ARG TF_BRANCH=v1.15.0
 
 # For now only version 7 is supported
 ARG DEV_TOOLSET_VER=7
+# Switch to the specified Dev-Toolset environment to pick up a modern version of gcc
+ENV DEV_TOOLSET_BIN="/opt/rh/devtoolset-${DEV_TOOLSET_VER}/root/usr/libexec/gcc/x86_64-redhat-linux/${DEV_TOOLSET_VER}:/opt/rh/devtoolset-${DEV_TOOLSET_VER}/root/usr/bin"
+ENV PATH=${DEV_TOOLSET_BIN}:$PATH
 
 # Only 2.7 or 3.6 versions are supported
 ARG PY_VER=2.7
@@ -18,8 +21,7 @@ ARG TARGET_PLATFORM=sandybridge
 ARG CONFIG_VER=v1
 ARG TF_WHLS_DIR=/tensorflow_whls
 
-RUN yum clean all && \
-    yum update -y && \
+RUN yum update -y && \
     yum install -y \
         git
 
@@ -29,8 +31,7 @@ WORKDIR $TF_SRC/tensorflow/tools/ci_build/install
 
 RUN ./install_yum_packages.sh
 
-RUN yum clean all && \
-    yum update -y && \
+RUN yum update -y && \
     yum install -y \
         clang \
         python2 \
